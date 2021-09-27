@@ -59,6 +59,9 @@ async function downloadWork() {
     }
     else {
         for (const [index, chapter] of chapterList.entries()) {
+
+            //TODO: avoid downloading the chapter we're already on. 
+
             console.log("Fetching chapter: " + chapter.title)
             downloadButton.textContent = `Downloading ${index}/${chapterList.length}`
             let chapterNode = await fetchChapter(chapter.url)
@@ -69,8 +72,6 @@ async function downloadWork() {
 
         downloadButton.textContent = 'Download'
     }
-
-    // the first chapter is special, because it's already loaded, so we don't need to fetch it.
 
     createDownloadPrompt(doc, downloadFilename + '.html')
 
